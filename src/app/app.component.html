@@ -1,0 +1,15 @@
+<ngx-charts-bar-vertical 
+    [view]="[1000,400]"
+    [results]="saleData"
+    [xAxisLabel]="'Products'"
+    [legendTitle]="'Product Sale Chart'"
+    [yAxisLabel]="'Number'"
+    [legend]="false"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [gradient]="true">
+</ngx-charts-bar-vertical>
+
+<input type="button" value="BubbleSort" (click)="sort()">
