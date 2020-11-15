@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
-import { take } from 'rxjs/operators'; 
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,32 +11,53 @@ export class AppComponent implements OnInit {
   // saleData;
   x = Math.floor((Math.random() * 100000) + 1);
   saleData = [
-    { name: "Mobiles", value: 9000 },
+    { name: "Mobiles", value: 9000 },{ name: "sofa", value: 2300 },    { name: "car", value: 2600 },
     { name: "Laptop", value: 550 },
     { name: "AC", value: 1500 },
     { name: "Headset", value: 1900 },
     { name: "Fridge", value: 1000 },
-    { name: "sofa", value: 2300 },
+    
     { name: "telephone", value: 2400 },
     { name: "chair", value: 2500 },
-    { name: "car", value: 2600 },
+
     { name: "bike", value: 700 },
     { name: "aeroplane", value: 2800 }
 
   ];
+  reload(){
+  window.location.reload()
+  }
   ngOnInit(): void {
-
-
   }
   sort() {
-
     var sortedarr = this.bubblesort(this.saleData);
   }
-  sleep() {var d = new Date();
-    console.log(d);
-    console.log(d.getMilliseconds());
-    return new Promise(resolve => setTimeout(resolve, 90));
-    
+
+  SelectionSort() {
+    this.selectionSort(this.saleData);
+  }
+  async selectionSort(inputArr) {
+    let n = inputArr.length;
+
+    for (let i = 0; i < n; i++) {
+      // Finding the smallest number in the subarray
+      let min = i;
+      for (let j = i + 1; j < n; j++) {
+        if (inputArr[j]["value"] < inputArr[min]["value"]) {
+          min = j;
+        }
+      }
+      if (min != i) {
+        // Swapping the elements
+        let tmp = inputArr[i];
+        inputArr[i] = inputArr[min];
+        inputArr[min] = tmp;
+        this.saleData = Array.from(inputArr);
+
+        await timer(500).pipe(take(1)).toPromise();
+      }
+    }
+    //return inputArr;
   }
 
   async bubblesort(arr) {
@@ -49,18 +70,16 @@ export class AppComponent implements OnInit {
           let temp = arr[j];
           arr[j] = arr[j + 1];
           arr[j + 1] = temp;
-          
-           this.saleData = Array.from(arr);
-           
+
+          this.saleData = Array.from(arr);
+
           await timer(500).pipe(take(1)).toPromise();
-         //  return arr;
+          //  return arr;
         }
 
       }
-    
-    } 
+
+    }
   }
-
-
 
 }
