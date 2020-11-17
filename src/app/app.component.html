@@ -2,6 +2,7 @@
 <div class="row">
                 <ngx-charts-bar-vertical 
                     [view]="[1000,400]"
+                    [customColors]="customColors"
                     [results]="saleData"
                     [xAxisLabel]="'Products'"
                     [legendTitle]="'Product Sale Chart'"
@@ -9,7 +10,7 @@
                     [legend]="false"
                     [showXAxisLabel]="true"
                     [showYAxisLabel]="true"
-                    [xAxis]="true"
+                    [xAxis]="false"
                     [yAxis]="true"
                     [gradient]="true">
                 </ngx-charts-bar-vertical>
@@ -33,6 +34,13 @@
             </div>
         </div>
       </div>
+
+</div>
+
+
+<div class="row">
+<!-- 
+   <app-charts></app-charts> -->
 
 </div>
 

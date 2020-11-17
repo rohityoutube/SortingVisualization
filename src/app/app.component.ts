@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,15 +9,60 @@ import { take } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
   title = 'mycharts';
+  customColors = [
+    {
+      name: "Mobiles",
+      value: '#0000ff'
+    },
+    {
+      name: "sofa",
+      value: '#0000ff'
+    },
+    {
+      name: "car",
+      value: '#0000ff'
+    },
+    {
+      name: "Laptop",
+      value: '#0000ff'
+    }, {
+      name: "AC",
+      value: '#0000ff'
+    },
+    {
+      name: "Headset",
+      value: '#0000ff'
+    },
+    {
+      name: "Fridge",
+      value: '#0000ff'
+    },
+    {
+      name: "telephone",
+      value: '#0000ff'
+    },
+    {
+      name: "chair",
+      value: '#0000ff'
+    },
+    {
+      name: "bike",
+      value: '#0000ff'
+    },
+    {
+      name: "aeroplane",
+      value: '#0000ff'
+    }
+  ];
   // saleData;
   x = Math.floor((Math.random() * 100000) + 1);
   saleData = [
-    { name: "Mobiles", value: 9000 },{ name: "sofa", value: 2300 },    { name: "car", value: 2600 },
+    { name: "Mobiles", value: 9000 }, { name: "sofa", value: 2300 }, { name: "car", value: 2600 },
     { name: "Laptop", value: 550 },
     { name: "AC", value: 1500 },
     { name: "Headset", value: 1900 },
     { name: "Fridge", value: 1000 },
-    
+
     { name: "telephone", value: 2400 },
     { name: "chair", value: 2500 },
 
@@ -24,11 +70,13 @@ export class AppComponent implements OnInit {
     { name: "aeroplane", value: 2800 }
 
   ];
-  reload(){
-  window.location.reload()
+  reload() {
+    window.location.reload()
   }
   ngOnInit(): void {
+
   }
+
   sort() {
     var sortedarr = this.bubblesort(this.saleData);
   }
@@ -67,6 +115,17 @@ export class AppComponent implements OnInit {
     for (var i = 0; i < n - 1; i++) {
       for (var j = 0; j < n - i - 1; j++) {
         if (arr[j]["value"] > arr[j + 1]["value"]) {
+          this.customColors.forEach(function (a) {
+            console.log(a);
+            console.log(arr[j]);
+
+            if (arr[j]["name"] == a.name) {
+              a.value = "#FF0000"
+            }
+            if (arr[j + 1]["name"] == a.name) {
+              a.value = "#FF0000"
+            }
+          })
           let temp = arr[j];
           arr[j] = arr[j + 1];
           arr[j + 1] = temp;
@@ -77,9 +136,23 @@ export class AppComponent implements OnInit {
           //  return arr;
         }
 
+        this.customColors.forEach(function (a) {
+          console.log(a);
+          console.log(arr[j]);
+
+          if (arr[j]["name"] == a.name) {
+            a.value = "#0000ff"
+          }
+          if (arr[j + 1]["name"] == a.name) {
+            a.value = "#0000ff"
+          }
+        })
+
       }
 
     }
   }
+
+  //////////////////////////chart.js
 
 }
